@@ -47,6 +47,9 @@ def sueldoBasico(sueldo):
 
 
 def valorBono(antiguedad):
+
+	# funcion selectora de bono por antiguedad
+
 	if antiguedad>=1 and antiguedad<=5:
 		valorBono=0.10
 	elif antiguedad>5 and antiguedad<=10:
@@ -74,6 +77,9 @@ def ingresoEmpleado():
 		empleado['edadEmpleado']=edadEmpleado(int(input("Ingrese la edad(años): ")))
 		empleado['sexoEmpleado']=sexoEmpleado(input("Ingrese el sexo del empleado(M o F): "))
 		empleado['antiguedadEmpleado']=antiguedadEmpleado(int(input("Ingrese su antiguedad: ")))
+		
+		# se guarda directamente como item dentro del diccionario del empleado
+
 		empleado['antiguedadBono']=valorBono(empleado.get('antiguedadEmpleado'))*empleado.get('sueldoBasico')
 
 		listaEmpleados.append(empleado)
@@ -81,8 +87,8 @@ def ingresoEmpleado():
 	return listaEmpleados
 
 
-def cantidadEmpelados(listaEmpleados):
-	print("Cantidad de empleados cargados: "+ len(listaEmpleados))
+def cantidadEmpleados(listaEmpleados):
+	print("Cantidad de empleados cargados: "+ str(len(listaEmpleados)))
 
 def sueldoBasicoPromedio(listaEmpleados):
 
@@ -112,6 +118,60 @@ def antiguedadPromedio(listaEmpleados):
 	else:
 		promedio=sumaTotal/cantEmpleados
 		print('La antiguedad promedio es: '+ str(promedio) +' años.')
+
+
+def mujeresEmpleados(listaEmpleados):
+
+	resultado=len(list(filter(lambda x: x['sexoEmpleado']=='f',listaEmpleados)))
+	if resultado==0:
+		print('No hay mujeres cargadas en nuestro sistema')
+	else:
+
+		print('Promedio de mujeres trabajando : ' +str(resultado*100/len(listaEmpleados))+' %')
+
+def sueldoTotalPromedio(listaEmpleados):
+	sueldoTotal=0
+	if len(listaEmpleados)!=0:
+		for empleado in listaEmpleados:
+			sueldoTotal+=empleado['sueldoBasico']+empleado['antiguedadBono']
+
+		print(' Promedio de sueldo total: '+str(sueldoTotal/len(listaEmpleados)))
+
+	else:
+		print('No existen registros insertados')
+
+def sueldoAlto(listaEmpleados):
+	
+	if len(listaEmpleados)!=0:
+		sueldoTotalMax=listaEmpleados[0]['sueldoBasico']+listaEmpleados[0]['antiguedadBono']	 
+
+		for empleado in listaEmpleados:
+			sueldoTotal=empleado['sueldoBasico']+empleado['antiguedadBono']	 
+			if sueldoTotal>sueldoTotalMax:
+				sueldoTotalMax=sueldoTotal
+		print('Sueldo total máximo es: '+str(sueldoTotalMax))
+	else:
+		print('No existen registros insertados')
+
+
+def empleadoEdades(listaEmpleados):
+	
+	if len(listaEmpleados)!=0:
+		edadMax=listaEmpleados[0]['edadEmpleado']
+		edadMin=listaEmpleados[0]['edadEmpleado']
+
+		print(edadMax)
+
+		for empleado in listaEmpleados:
+			if (valor:=empleado.get('edadEmpleado'))>edadMax:
+				edadMax=valor
+			if (valor:=empleado.get('edadEmpleado'))<edadMin:
+				edadMin=valor
+
+		print('Edad del empleado más viejo: '+str(edadMax)+' años'+'\nEdad del empleado más joven: '+str(edadMin)+' años')
+	else:
+		print('No existen registros insertados')
+
 
 
 
