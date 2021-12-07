@@ -135,7 +135,7 @@ def sueldoTotalPromedio(listaEmpleados):
 		for empleado in listaEmpleados:
 			sueldoTotal+=empleado['sueldoBasico']+empleado['antiguedadBono']
 
-		print(' Promedio de sueldo total: '+str(sueldoTotal/len(listaEmpleados)))
+		print('Promedio de sueldo total: '+str(sueldoTotal/len(listaEmpleados)))
 
 	else:
 		print('No existen registros insertados')
@@ -159,8 +159,6 @@ def empleadoEdades(listaEmpleados):
 	if len(listaEmpleados)!=0:
 		edadMax=listaEmpleados[0]['edadEmpleado']
 		edadMin=listaEmpleados[0]['edadEmpleado']
-
-		print(edadMax)
 
 		for empleado in listaEmpleados:
 			if (valor:=empleado.get('edadEmpleado'))>edadMax:
