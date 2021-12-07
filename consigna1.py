@@ -4,7 +4,7 @@ from helpers import*
 
 def main():
 	import os
-	print('Consigna #1 Ingreso de empleados, con el valor de sueldo básico = 0 se finaliza el programa')
+	print('Consigna #1 Ingreso de empleados, con el valor de sueldo básico = 0 se finaliza la carga de empleados')
 
 	
 	listaEmpleados=ingresoEmpleado()
