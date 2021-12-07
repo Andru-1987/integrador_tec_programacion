@@ -109,10 +109,10 @@ def mostrarGanador(listaDeParticipantes):
         if n['mejorDisparo']<maxValue:
             nombre=n['nombre']
             apellido=n['apellido']
-            mejorDisparo=n['mejorDisparo']
+            maxValue=n['mejorDisparo']
 
 
-    print(f'El ganador fue {apellido}, {nombre} y la distancia a su disparo fue de: {mejorDisparo}')
+    return print(f'El ganador fue {apellido}, {nombre} y la distancia a su disparo fue de: {maxValue}')
 
 
 def mostrarPerdedor(listaDeParticipantes):
@@ -142,7 +142,7 @@ def cantidadMujeres(listaDeParticipantes):
         if n.get('sexo')=='m':
             accumulador+=1
     if accumulador==0:
-        print('No hubo hombres en el concurso')
+        print('No hubo mujeres en el concurso')
     else:
         print(f'Cantidad de participantes de sexo femenino: {accumulador}')
 
@@ -175,15 +175,22 @@ def promedioDisparos(listaDeParticipantes):
 
 
 def promedioMejoresDisparos(listaDeParticipantes):
-    
-    
+
     accValorDisparos=0
 
     for n in listaDeParticipantes:
       accValorDisparos+=n.get('mejorDisparo')
-  
+
     promedio=round(float(accValorDisparos/len(listaDeParticipantes)),2)
     print(f'El promedio de valor en los disparos fue de: {promedio}')
 
+def createCSV(listaDeParticipantes):
+	import csv
 
+	headers=listaDeParticipantes[0].keys()
+	with open ('lista_Participantes.csv','w') as lista:
+		dict_writer=csv.DictWriter(lista,headers)
+		dict_writer.writeheader()
+		dict_writer.writerows(listaDeParticipantes)
+	
 
