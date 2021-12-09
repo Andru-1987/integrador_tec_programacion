@@ -4,8 +4,9 @@ from helper import *
 
 def main():
 	
-	print('Gracias por usar el programa Concurso de Tiro')
-
+	dateConcurso=input('Bienvenido\nIngrese el año del concurso\n')
+	print('Gracias por usar el programa Concurso de Tiro del año: '+dateConcurso)
+	
 	print('Ingreso de participantes al concurso')
 	listaDeParticipantes=participantesLista()
 
