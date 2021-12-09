@@ -44,58 +44,58 @@ def cadena(string):
 
 def validarID(ID,listaDeParticipantes):
 
-	listaID=[]
-	for participante in listaDeParticipantes:
-		listaID.append(participante['id'])
+    listaID=[]
+    for participante in listaDeParticipantes:
+        listaID.append(participante['id'])
 
-	while True:
-		if ID not in listaID:
-			break
-		else:
-			ID=validarNumeroString(input('Ingrese otro ID: '))
+    while True:
+        if ID not in listaID:
+            break
+        else:
+            ID=validarNumeroString(input('Ingrese otro ID: '))
 
-	return ID
+    return ID
 
 
 
 def participantesLista():
 
-	listaDeParticipantes=[]
+    listaDeParticipantes=[]
 
-	while True:
+    while True:
 
-		participante={}
-		disparo=[]
+        participante={}
+        disparo=[]
 
-		idParticipante=validarNumeroString(input('Ingrese #ID participante: '))
-		participante['id']=validarID(idParticipante,listaDeParticipantes)
+        idParticipante=validarNumeroString(input('Ingrese #ID participante: '))
+        participante['id']=validarID(idParticipante,listaDeParticipantes)
 
-		if participante.get('id')==999:
-			print('Carga de datos terminada')
-			break
+        if participante.get('id')==999:
+            print('Carga de datos terminada')
+            break
 
-		participante['nombre']=cadena(input('Ingrese nombre: ')).lower().capitalize()
-		participante['apellido']=cadena(input('Ingrese apellido: ')).lower().capitalize()
-		participante['edad']=validarNumero(input('Ingrese edad: '))
-		participante['sexo']=input('Ingrese sexo "h/m":' ).lower()
+        participante['nombre']=cadena(input('Ingrese nombre: ')).lower().capitalize()
+        participante['apellido']=cadena(input('Ingrese apellido: ')).lower().capitalize()
+        participante['edad']=validarNumero(input('Ingrese edad: '))
+        participante['sexo']=input('Ingrese sexo "h/m":' ).lower()
 
-		for i in range(2):
-			print('Ingrese coordenadas de disparo '+ str(i+1))
-			disparoX=validarNumero(input('Coordenada X: '))
-			disparoY=validarNumero(input('Coordenada Y: '))
+        for i in range(2):
+            print('Ingrese coordenadas de disparo '+ str(i+1))
+            disparoX=validarNumero(input('Coordenada X: '))
+            disparoY=validarNumero(input('Coordenada Y: '))
 
-			shot=tiroAlTablero(disparoX,disparoY)
-			disparo.append(shot)
+            shot=tiroAlTablero(disparoX,disparoY)
+            disparo.append(shot)
 
-		participante['disparo']=disparo
+        participante['disparo']=disparo
 
-		# cual es el mejor disparo
-		mejorShot=lambda x: x[0] if x[0]<x[1] else x[1]
+        # cual es el mejor disparo
+        mejorShot=lambda x: x[0] if x[0]<x[1] else x[1]
 
-		participante['mejorDisparo']=mejorShot(disparo)
-		listaDeParticipantes.append(participante)
+        participante['mejorDisparo']=mejorShot(disparo)
+        listaDeParticipantes.append(participante)
 
-	return listaDeParticipantes
+    return listaDeParticipantes
 
 
 
@@ -152,7 +152,7 @@ def edadPromedioHombres(listaDeParticipantes):
     accEdad=0
 
     for n in listaDeParticipantes:
-        if n.get('sexo')=='m':
+        if n.get('sexo')=='h':
           contHombres+=1
           accEdad+=n.get('edad')
 
@@ -182,16 +182,15 @@ def promedioMejoresDisparos(listaDeParticipantes):
       accValorDisparos+=n.get('mejorDisparo')
 
     promedio=round(float(accValorDisparos/len(listaDeParticipantes)),2)
-    print(f'El promedio de valor en los disparos fue de: {promedio}')
+    print(f'El promedio de los mejores disparos fue de: {promedio}')
 
 def createCSV(listaDeParticipantes,date):
-	import csv
+    import csv
 
-	headers=listaDeParticipantes[0].keys()
-	nombreArchivo=date+'_listaParticipantes.csv'
-	with open (nombreArchivo,'w') as lista:
-		dict_writer=csv.DictWriter(lista,headers)
-		dict_writer.writeheader()
-		dict_writer.writerows(listaDeParticipantes)
-	
+    headers=listaDeParticipantes[0].keys()
+    nombreArchivo=date+'_listaParticipantes.csv'
+    with open (nombreArchivo,'w') as lista:
+        dict_writer=csv.DictWriter(lista,headers)
+        dict_writer.writeheader()
+        dict_writer.writerows(listaDeParticipantes)
 
