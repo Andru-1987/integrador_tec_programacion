@@ -4,13 +4,14 @@ from helper import *
 
 def main():
 	
-	dateConcurso=input('Bienvenido\nIngrese el año del concurso\n')
-	print('Gracias por usar el programa Concurso de Tiro del año: '+dateConcurso)
+	dateConcurso=input('Bienvenido\nIngrese el año del concurso\n') or 'No Ingresado'
+	print('Concurso de Tiro del año: '+dateConcurso)
 	
 	print('Ingreso de participantes al concurso')
+	print('-------------- Termina la carga con 999 --------------')
 	listaDeParticipantes=participantesLista()
 
-	print('Informe del concurso Tiro al Blanco\n')
+	print('-------------- Informe del concurso --------------')
 	
 	mostrarGanador(listaDeParticipantes)
 	mostrarPerdedor(listaDeParticipantes)
@@ -21,6 +22,7 @@ def main():
 	promedioMejoresDisparos(listaDeParticipantes)
 
 	createCSV(listaDeParticipantes,dateConcurso)
+	print('-------------- Fin --------------')
 	print('\nGracias! => Realizado por Anderson')
 
 
