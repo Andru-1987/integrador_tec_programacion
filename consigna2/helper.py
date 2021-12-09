@@ -184,11 +184,12 @@ def promedioMejoresDisparos(listaDeParticipantes):
     promedio=round(float(accValorDisparos/len(listaDeParticipantes)),2)
     print(f'El promedio de valor en los disparos fue de: {promedio}')
 
-def createCSV(listaDeParticipantes):
+def createCSV(listaDeParticipantes,date):
 	import csv
 
 	headers=listaDeParticipantes[0].keys()
-	with open ('lista_Participantes.csv','w') as lista:
+	nombreArchivo=date+'_listaParticipantes.csv'
+	with open (nombreArchivo,'w') as lista:
 		dict_writer=csv.DictWriter(lista,headers)
 		dict_writer.writeheader()
 		dict_writer.writerows(listaDeParticipantes)
