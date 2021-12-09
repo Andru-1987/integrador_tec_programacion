@@ -20,7 +20,7 @@ def main():
 	promedioDisparos(listaDeParticipantes)
 	promedioMejoresDisparos(listaDeParticipantes)
 
-	createCSV(listaDeParticipantes)
+	createCSV(listaDeParticipantes,dateConcurso)
 	print('\nGracias! => Realizado por Anderson')
 
 
